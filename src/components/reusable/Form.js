@@ -52,45 +52,48 @@ form {
 
 
 class Form extends React.Component {
+    
     render() {
+        const handleOnChange = this.props.handleOnChange;
+        const handleOnSubmit = this.props.handleOnSubmit;
         return(
             <FormWrapper>
                 <Subtitle>Create New User</Subtitle>
-            <form onSubmit={this.handleOnSubmit}>
+            <form onSubmit={handleOnSubmit}>
             <div className="form__field-container">
                 <label className="form__label">Name</label>
                 <input className="form__field" type="text" id="first_name"
-                //  onChange={} value={}
+                 onChange={handleOnChange} value={this.props.data.first_name}
                  ></input>
             </div>
             <div className="form__field-container">
                 <label className="form__label">Last Name</label>
                 <input className="form__field" type="text" id="last_name"
-                //  onChange={} value={}
+                onChange={handleOnChange} value={this.props.data.last_name}
                  ></input>
             </div>
             <div className="form__field-container">
                 <label className="form__label">Age</label>
                 <input className="form__field" type="number" id="age" 
-                // onChange={} value={}
+                onChange={handleOnChange} value={this.props.data.age}
                 ></input>
             </div>
             <div className="form__field-container">
                 <label className="form__label">Street</label>
                 <input className="form__field" type="text" id="street" 
-                // onChange={} value={}
+                onChange={handleOnChange} value={this.props.data.street}
                 ></input>
             </div>
             <div className="form__field-container">
                 <label className="form__label">City</label>
                 <input className="form__field" type="text" id="city" 
-                // onChange={} value={}
+                onChange={handleOnChange} value={this.props.data.city}
                 ></input>
             </div>
             <div className="form__field-container">
                 <label className="form__label">Postal Code</label>
                 <input className="form__field" id="postal_code" 
-                // onChange={} value={}
+                onChange={handleOnChange} value={this.props.data.postal_code}
                 ></input>
             </div>
             <button className="form__button">Submit</button>
