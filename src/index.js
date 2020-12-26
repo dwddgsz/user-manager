@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --white: #fff;
     --dark: #37414C;
     --bg: #FAFAFA; 
-    --grey: #c8c8c8;
+    --grey: rgba(245,245,245);
 }
 * {
   margin:0;
@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
 }
 html,body {
   height:100%;
+}
+body {
+    background-color: var(--grey);
 }
 html {
   font-size:62.5%;
