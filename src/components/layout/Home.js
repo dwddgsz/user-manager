@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{Component} from 'react'
 
 import Subtitle from '../reusable/Subtitle';
 import Filter from '../reusable/Filter';
 import UsersList from '../reusable/UsersList';
 
-const Home = () => {
+class Home extends Component {
+    render() {
     return (
         <div>
         <Subtitle>Filter Options</Subtitle>
@@ -12,6 +13,7 @@ const Home = () => {
         <UsersList></UsersList>
         </div>
     )
+    }
 }
 
 export default Home
