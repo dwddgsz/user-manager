@@ -32,8 +32,8 @@ background-color: var(--white);
         cursor:pointer;
         transition: background-color .3s, border .3s, color .3s;
         &:hover,&:focus {
-            background-color:var(--white);
             border: 2px solid var(--dark);
+            background-color:var(--white);
             color: var(--dark);
         }
     }
@@ -48,9 +48,10 @@ class Nav extends Component {
         return (
         <NavWrapper>
             <div className="nav__content">
-                <h1 className="nav__logo"><Link className="nav__link" to="/">
-                User Manager
-                </Link>
+                <h1 className="nav__logo">
+                    <Link className="nav__link" to="/">
+                        User Manager
+                    </Link>
                 </h1>
                 <button className="nav__create-button" onClick={this.pushToCreate}>Create</button>
             </div>

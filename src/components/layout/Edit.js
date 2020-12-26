@@ -1,11 +1,10 @@
 import React from 'react'
+import Form from '../reusable/Form'
 
 const Edit = () => {
     return (
-        <div>
-            edit
-        </div>
+        <Form></Form>
     )
 }
 
-export default Edit
+export default Edit;

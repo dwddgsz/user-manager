@@ -1,10 +1,19 @@
 import React from 'react'
+import styled from 'styled-components';
 
-const Subtitle = () => {
+
+const SubtitleWrapper = styled.h2`
+margin-top:40px;
+margin-bottom:30px;
+text-align:center;
+font-size:2.2rem;
+`
+
+const Subtitle = (props) => {
     return (
-        <div>
-            subtitle
-        </div>
+        <SubtitleWrapper>
+            {props.children}
+        </SubtitleWrapper>
     )
 }
 
