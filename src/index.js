@@ -21,6 +21,7 @@ html,body {
 html {
   font-size:62.5%;
   font-family: 'Inter', sans-serif;
+  color: var(--dark);
 }
 a {
   text-decoration:none;
