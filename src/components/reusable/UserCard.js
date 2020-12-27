@@ -99,7 +99,7 @@ const UserCard = ({data}) => {
     }
 
     return (
-        <UserCardWrapper data-id={data.id}>
+        <UserCardWrapper>
 
         <div className="card__header">
             <h3>
