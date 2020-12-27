@@ -21,7 +21,8 @@ class Home extends Component {
         .catch(()=>{console.log('error')})
     }
 
-    handleOnSubmit = () => {
+    handleOnSubmit = (e) => {
+        e.preventDefault();
         if ((this.state.minAge === '') || (this.state.maxAge === '')){
             this.setState({error:'age field cannot be empty'});
             return;

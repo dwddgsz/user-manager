@@ -74,9 +74,9 @@ padding: 0;
 export class Filter extends Component {
     render() {
         return (
-            <FilterWrapper onSubmit={(e)=>{e.preventDefault();this.props.handleOnSubmit()}}>
+            <FilterWrapper onSubmit={this.props.handleOnSubmit}>
                 <div className="search__field-group">
-                <label className="search__label" htmlFor="searchPhrase">search phrase</label>
+                <label className="search__label" htmlFor="searchPhrase">Last Name</label>
                 <input id="searchPhrase" onChange={this.props.handleOnChange} value={this.props.searchPhrase} type="text" className="search__by-name" ></input>
                 </div>
 
