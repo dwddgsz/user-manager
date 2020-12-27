@@ -11,9 +11,7 @@ font-size:2.2rem;
 
 const Subtitle = (props) => {
     return (
-        <SubtitleWrapper>
-            {props.children}
-        </SubtitleWrapper>
+        <SubtitleWrapper>{props.children}</SubtitleWrapper>
     )
 }
 

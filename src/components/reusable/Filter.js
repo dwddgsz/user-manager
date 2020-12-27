@@ -57,6 +57,7 @@ padding: 0;
         text-align:center;
         font-size:1.3rem;
         margin-bottom:6px;
+        text-transform:capitalize;
     }
 
     &__error {
@@ -93,7 +94,7 @@ export class Filter extends Component {
 
                 </div>
                 <p className="search__error">{this.props.error}</p>
-                <Button center="true">Search</Button>
+                <Button center={true}>Search</Button>
             </FilterWrapper>
 
         )

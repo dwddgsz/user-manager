@@ -12,7 +12,7 @@ const NotFound = () => {
     return (
         <section>
         <Subtitle>Page Not Found</Subtitle>
-        <Button center="true" handleOnClick={pushToHome}>Home</Button>
+        <Button center={true} handleOnClick={pushToHome}>Home</Button>
         </section>
     )
 }

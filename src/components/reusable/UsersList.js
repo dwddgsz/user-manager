@@ -22,7 +22,7 @@ class UsersList extends Component {
     renderUsers = () => {
         if(Object.keys(this.props.filteredData).length === 0) {
             return (
-                <li>Loading...</li>
+                <li>No records found</li>
             )
         } else {
             return this.props.filteredData.map(element=>{
