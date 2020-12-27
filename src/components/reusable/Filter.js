@@ -66,11 +66,11 @@ padding: 0;
 export class Filter extends Component {
     render() {
         return (
-            <FilterWrapper>
-                <input type="text" className="search__by-name" placeholder="search by last name"></input>
+            <FilterWrapper onSubmit={(e)=>{e.preventDefault();this.props.handleOnSubmit()}}>
+                <input id="searchPhrase" onChange={this.props.handleOnChange} value={this.props.searchPhrase} type="text" className="search__by-name" placeholder="search by last name" ></input>
                 <div className="search__by-age-container">
-                <input type="number" className="search__by-age" placeholder="min age"></input>
-                <input type="number" className="search__by-age" placeholder="max age"></input>
+                <input id="minAge" onChange={this.props.handleOnChange} min="0" value={this.props.minAge} type="number" className="search__by-age" placeholder="min age"></input>
+                <input id="maxAge" onChange={this.props.handleOnChange} max="200" value={this.props.maxAge} type="number" className="search__by-age" placeholder="max age" ></input>
                 </div>
                 <button className="search__button">Search</button>
             </FilterWrapper>
