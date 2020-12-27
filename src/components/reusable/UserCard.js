@@ -87,12 +87,10 @@ const UserCardWrapper = styled.li`
 
 const UserCard = ({data}) => {
     const pushToEdit = (e) =>{
-        const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
-        history.push(`/edit/${id}`)
+        history.push(`/edit/${data.id}`)
     }
     const deleteUser = (e) => {
-        const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
-        fetch(`http://fronttest.ekookna.pl/user/${id}?_method=DELETE`, {
+        fetch(`http://fronttest.ekookna.pl/user/${data.id}?_method=DELETE`, {
       method: 'POST'
     })
     .then(res=>{return res.json()})
