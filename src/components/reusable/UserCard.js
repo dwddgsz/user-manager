@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import history from '../../history'
 
 const UserCardWrapper = styled.li`
     width:240px;
@@ -70,23 +70,37 @@ const UserCardWrapper = styled.li`
 ` 
 
 
-const UserCard = () => {
+const UserCard = ({data}) => {
+    const pushToEdit = (e) =>{
+        const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
+        history.push(`/edit/${id}}`)
+    }
+    const deleteUser = (e) => {
+        const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
+        fetch(`http://fronttest.ekookna.pl/user/${id}?_method=DELETE`, {
+      method: 'POST'
+    })
+    .then(res=>{return res.json()})
+    .then(res=>{window.location.reload(true);})
+    
+    }
+
     return (
-        <UserCardWrapper>
+        <UserCardWrapper data-id={data.id}>
         <div className="card__header">
-            <h3>Random Name</h3>
+            <h3>{`${data.first_name} ${data.last_name}`}</h3>
         </div>
         <ul className="card__body">
-            <li><span>Age:</span><p>22</p></li>
-            <li><span>Street:</span>Jastrzębska<p></p></li>
-            <li><span>City:</span><p>Jastrzębie</p></li>
-            <li><span>Postal Code:</span><p>22-222</p></li>
+            <li><span>Age:</span><p>{data.age}</p></li>
+            <li><span>Street:</span>{data.street}<p></p></li>
+            <li><span>City:</span><p>{data.city}</p></li>
+            <li><span>Postal Code:</span><p>{data.postal_code}</p></li>
         </ul>
         <div className="card__buttons">
-            <Link to="/edit" className="user__button">
+            <button className="user__button" onClick={pushToEdit}>
             <span className="fas fa-user-edit"></span>
-            </Link>                  
-            <button className="user__button">
+            </button>                  
+            <button className="user__button" onClick={deleteUser}>
             <span className="fas fa-user-times"></span>
             </button>
         
