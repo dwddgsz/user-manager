@@ -1,24 +1,52 @@
 import React,{Component} from 'react'
-import Form from '../reusable/Form'
+import Form from '../reusable/Form';
+import history from '../../history';
 
 class Edit extends Component {
+    componentDidMount() {
+        const id = this.props.match.params.id
+        fetch(`http://fronttest.ekookna.pl/user/${id}`)
+        .then((res)=>{return res.json()})
+        .then((res=>{this.setState(res.user)}))
+        .then((()=>{this.setState({success:'yes'})}))
+        .catch(()=>{this.setState({success:'no'})})
+    }
     state = {
-        first_name:'',
-        last_name:'',
-        street:'',
-        postal_code:'',
-        city:'',
-        age:'',
+        success:'',
     }
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
+            error: '',
         })
     }
 
     handleOnSubmit = (e) => {
         e.preventDefault();
+        if (
+            (this.state.first_name === '') ||
+            (this.state.last_name ==='') ||
+            (this.state.age ==='') ||
+            (this.state.street ==='') ||
+            (this.state.city ==='') ||
+            (this.state.age ==='')
+            ) {
+                this.setState({error: 'field cannot be empty'});
+                return;
+            }
+            const regexp = /^\S*$/;
+            if (
+                (this.state.first_name.match(regexp)) ||
+                (this.state.last_name.match(regexp)) ||
+                (this.state.age.match(regexp)) ||
+                (this.state.street.match(regexp)) ||
+                (this.state.city.match(regexp)) ||
+                (this.state.age.match(regexp))
+                ) {
+                    this.setState({error: 'field cannot contain white spaces'});
+                    return;
+                }
     const details = {
         first_name:this.state.first_name,
         last_name:this.state.last_name,
@@ -34,8 +62,8 @@ class Edit extends Component {
       formBody.push(encodedKey + "=" + encodedValue);
     }
     formBody = formBody.join("&");
-    console.log(this.state)
-    fetch('http://fronttest.ekookna.pl/user/5?_method=PUT', {
+    const id = this.props.match.params.id
+    fetch(`http://fronttest.ekookna.pl/user/${id}?_method=PUT`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -52,13 +80,22 @@ class Edit extends Component {
         city:'',
         age:'',
     })})
+    .then((()=>{history.push('/')}))
     }
 
 
 
-    render() {return (
-        <Form data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
-    )}
+    render() {
+        if(this.state.success === 'yes') {
+            return (
+                <Form data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
+                )            
+        } else {
+            return (
+                <p>Record not found</p>
+            )
+        }
+}
 }
 
 export default Edit

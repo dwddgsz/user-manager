@@ -9,16 +9,43 @@ class Create extends Component {
         postal_code:'',
         city:'',
         age:'',
+        error:'',
     }
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
+            error: '',
         })
     }
 
     handleOnSubmit = (e) => {
-        e.preventDefault();
+    e.preventDefault();
+
+        if (
+            (this.state.first_name === '') ||
+            (this.state.last_name ==='') ||
+            (this.state.age ==='') ||
+            (this.state.street ==='') ||
+            (this.state.city ==='') ||
+            (this.state.age ==='')
+            ) {
+                this.setState({error: 'field cannot be empty'});
+                return;
+            }
+            const regexp = /^\S*$/;
+            if (
+                (this.state.first_name.match(regexp)) ||
+                (this.state.last_name.match(regexp)) ||
+                (this.state.age.match(regexp)) ||
+                (this.state.street.match(regexp)) ||
+                (this.state.city.match(regexp)) ||
+                (this.state.age.match(regexp))
+                ) {
+                    this.setState({error: 'field cannot contain white spaces'});
+                    return;
+                }
+
     const details = {
         first_name:this.state.first_name,
         last_name:this.state.last_name,
