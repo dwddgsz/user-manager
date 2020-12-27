@@ -11,18 +11,23 @@ class Create extends Component {
         postal_code:'',
         city:'',
         age:'',
-        error:'',
+        message:'',
+        success:false,
+
     }
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
-            error: '',
+            message: '',
+            success:false,
+
         })
     }
 
     handleOnSubmit = (e) => {
     e.preventDefault();
+    this.setState({success:false})
         // NO EMPTY SPACES
         if (
             (this.state.first_name === '') ||
@@ -32,7 +37,7 @@ class Create extends Component {
             (this.state.city ==='') ||
             (this.state.age ==='')
             ) {
-                this.setState({error: 'field cannot be empty'});
+                this.setState({message: 'field cannot be empty'});
                 return;
             }
 
@@ -45,7 +50,7 @@ class Create extends Component {
             (!this.state.street.match(regexpNoWhitespace)) ||
             (!this.state.city.match(regexpNoWhitespace))
             ) {
-                this.setState({error: 'field cannot contain whitespace characters'});
+                this.setState({message: 'field cannot contain whitespace characters'});
                 return;
             }
 
@@ -57,7 +62,7 @@ class Create extends Component {
             (!this.state.street.match(regexpLettersOnly)) ||
             (!this.state.city.match(regexpLettersOnly))
             ) {
-                this.setState({error: 'name, street and city fields can only contain letters'});
+                this.setState({message: 'name, street and city fields can only contain letters'});
                 return;
             }
 
@@ -98,7 +103,7 @@ class Create extends Component {
         city:'',
         age:'',
     })})
-    .then(()=>{history.push('/')})
+    .then(()=>{this.setState({success:true,message:'success'})})
     }
 
 

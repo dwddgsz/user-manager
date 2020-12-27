@@ -9,22 +9,26 @@ import Button from '../reusable/Button'
 
 
 class Edit extends Component {
+    state = {
+        isDataAvaible:false,
+        message:'',
+        success:false,
+    }
     componentDidMount() {
         const id = this.props.match.params.id
         fetch(`http://fronttest.ekookna.pl/user/${id}`)
         .then((res)=>{return res.json()})
         .then((res=>{this.setState(res.user)}))
-        .then((()=>{this.setState({success:'yes'})}))
-        .catch(()=>{this.setState({success:'no'})})
+        .then((()=>{this.setState({isDataAvaible:true})}))
+        .catch(()=>{this.setState({isDataAvaible:false})})
     }
-    state = {
-        success:'',
-    }
+
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
-            error: '',
+            message: '',
+            success:false,
         })
     }
 
@@ -40,7 +44,7 @@ class Edit extends Component {
             (this.state.city ==='') ||
             (this.state.age ==='')
             ) {
-                this.setState({error: 'field cannot be empty'});
+                this.setState({message: 'field cannot be empty'});
                 return;
             }
 
@@ -53,7 +57,7 @@ class Edit extends Component {
             (!this.state.street.match(regexpNoWhitespace)) ||
             (!this.state.city.match(regexpNoWhitespace))
             ) {
-                this.setState({error: 'field cannot contain white spaces'});
+                this.setState({message: 'field cannot contain white spaces'});
                 return;
             }
 
@@ -65,7 +69,7 @@ class Edit extends Component {
             (!this.state.street.match(regexpLettersOnly)) ||
             (!this.state.city.match(regexpLettersOnly))
             ) {
-                this.setState({error: 'name, street and city fields can only contain letters'});
+                this.setState({message: 'name, street and city fields can only contain letters'});
                 return;
             }
 
@@ -93,23 +97,13 @@ class Edit extends Component {
       },
       body: formBody
     })
-    .then(res=>{return res.json()})
-    .then(res=>{console.log(res)})
-    .then(()=>{this.setState({
-        first_name:'',
-        last_name:'',
-        street:'',
-        postal_code:'',
-        city:'',
-        age:'',
-    })})
-    .then((()=>{history.push('/')}))
+    .then((()=>{this.setState({success:true,message:'success'})}))
     }
 
 
 
     render() {
-        if(this.state.success === 'yes') {
+        if(this.state.isDataAvaible === true) {
             return (
                 <Form
                 title='Edit User'
@@ -122,7 +116,7 @@ class Edit extends Component {
             return (
                 <section>
                 <Subtitle>Record not found</Subtitle>
-                <Button center="true" handleOnClick={()=>{history.push('/')}}>Home</Button>
+                <Button center={true} handleOnClick={()=>{history.push('/')}}>Home</Button>
                 </section>
             )
         }
