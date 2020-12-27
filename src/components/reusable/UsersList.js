@@ -19,18 +19,6 @@ li {
 `
 
 class UsersList extends Component {
-    renderUsers = () => {
-        if(Object.keys(this.props.filteredData).length === 0) {
-            return (
-                <li>No records found</li>
-            )
-        } else {
-            return this.props.filteredData.map(element=>{
-                return (<UserCard data={element} key={element.id}/>)
-            })
-        }
-    }
-
 
     render() {
     return (
@@ -38,7 +26,14 @@ class UsersList extends Component {
         <UsersListWrapper>
             <Subtitle>Users List</Subtitle>
             <ul>
-                {this.renderUsers()}
+                {Object.keys(this.props.filteredData).length === 0 
+                ?
+                 <li>No records found</li> 
+                : 
+                this.props.filteredData.map(element=>{
+                return (<UserCard data={element} key={element.id}/>)
+                }) 
+                }
             </ul>
         </UsersListWrapper>
     )
