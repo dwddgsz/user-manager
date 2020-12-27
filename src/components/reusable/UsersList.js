@@ -15,20 +15,9 @@ align-items:center;
 `
 
 class UsersList extends Component {
-    state = {
-        allData: [],
-        filteredData: [],
-    }
-    componentDidMount() {
-        fetch('http://fronttest.ekookna.pl/')
-        .then((res)=>{return res.json()})
-        .then((res=>{this.setState({allData:res.users})}))
-        .then(()=>{this.setState({filteredData:this.state.allData})})
-        .catch(()=>{console.log('error')})
-    }
     renderUsers = () => {
-        if (this.state.filteredData) {
-            return this.state.filteredData.map(element=>{
+        if (this.props.filteredData) {
+            return this.props.filteredData.map(element=>{
                 return (<UserCard data={element} key={element.id}/>)
             })
         } else {
@@ -41,6 +30,7 @@ class UsersList extends Component {
 
     render() {
     return (
+        
         <UsersListWrapper>
             <Subtitle>Users List</Subtitle>
             <ul>
