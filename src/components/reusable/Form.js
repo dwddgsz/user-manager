@@ -67,7 +67,7 @@ class Form extends React.Component {
             </div>
             <div className="form__field-container">
                 <label className="form__label">Age</label>
-                <input className="form__field" type="number" id="age" 
+                <input className="form__field" type="number" min="0" max="200" id="age" 
                 onChange={handleOnChange} value={this.props.data.age}
                 ></input>
             </div>
