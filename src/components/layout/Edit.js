@@ -1,6 +1,28 @@
 import React,{Component} from 'react'
 import Form from '../reusable/Form';
 import history from '../../history';
+import Subtitle from '../reusable/Subtitle'
+import styled from 'styled-components';
+
+
+const RecordNotFoundWrapper = styled.div`
+button {
+    display:block;
+        margin:15px auto 0;
+        padding: 5px 20px;
+        border:2px solid var(--dark);
+        border-radius:4px;
+        color:var(--white);
+        background-color: var(--dark);
+        cursor:pointer;
+        transition: background-color .3s, border .3s, color .3s;
+        &:hover,&:focus {
+            background-color:var(--white);
+            border: 2px solid var(--dark);
+            color: var(--dark);
+        }
+}
+`
 
 class Edit extends Component {
     componentDidMount() {
@@ -102,10 +124,13 @@ class Edit extends Component {
                 )            
         } else {
             return (
-                <p>Record not found</p>
+                <RecordNotFoundWrapper>
+                <Subtitle>Record not found</Subtitle>
+                <button onClick={()=>{history.push('/')}}>Home</button>
+                </RecordNotFoundWrapper>
             )
         }
 }
 }
-
+ 
 export default Edit
