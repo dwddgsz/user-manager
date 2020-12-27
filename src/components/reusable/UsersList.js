@@ -11,19 +11,22 @@ ul {
 flex-wrap:wrap;
 justify-content:center;
 align-items:center;
+li {
+    font-size:2rem;
+}
 }
 `
 
 class UsersList extends Component {
     renderUsers = () => {
-        if (this.props.filteredData) {
+        if(Object.keys(this.props.filteredData).length === 0) {
+            return (
+                <li>Loading...</li>
+            )
+        } else {
             return this.props.filteredData.map(element=>{
                 return (<UserCard data={element} key={element.id}/>)
             })
-        } else {
-            return (
-                <p>Loading...</p>
-            )
         }
     }
 
