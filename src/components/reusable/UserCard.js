@@ -73,7 +73,7 @@ const UserCardWrapper = styled.li`
 const UserCard = ({data}) => {
     const pushToEdit = (e) =>{
         const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
-        history.push(`/edit/${id}}`)
+        history.push(`/edit/${id}`)
     }
     const deleteUser = (e) => {
         const id = e.target.closest('button').parentElement.parentElement.getAttribute('data-id');
