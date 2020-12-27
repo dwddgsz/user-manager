@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
+
 import Subtitle from '../reusable/Subtitle'
+import Button from '../reusable/Button'
 
 const FormWrapper = styled.section`
 
@@ -27,22 +29,7 @@ form {
             box-shadow: 1px 2px 2px rgba(200,200,200,.5);
             letter-spacing:1px;
         }
-    &__button {
-        display:block;
-        margin:0 auto;
-        padding: 5px 20px;
-        border:2px solid var(--dark);
-        border-radius:4px;
-        background-color: var(--dark);
-        color:var(--white);
-        cursor:pointer;
-        transition: background-color .3s, border .3s, color .3s;
-        &:hover,&:focus {
-            background-color:var(--white);
-            border: 2px solid var(--dark);
-            color: var(--dark);
-        }
-    }
+
     &__error {
         padding: 7px 0 12px;
         font-size:1.2rem;
@@ -103,7 +90,7 @@ class Form extends React.Component {
                 ></input>
             </div>
             <p className="form__error">{this.props.data.error}</p>
-            <button className="form__button">Submit</button>
+            <Button center="true">Submit</Button>
             </form>
             </FormWrapper>
             )

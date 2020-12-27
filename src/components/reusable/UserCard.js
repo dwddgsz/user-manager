@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+
 import history from '../../history'
 
 const UserCardWrapper = styled.li`
@@ -87,15 +88,18 @@ const UserCard = ({data}) => {
 
     return (
         <UserCardWrapper data-id={data.id}>
+
         <div className="card__header">
             <h3>{`${data.first_name} ${data.last_name}`}</h3>
         </div>
+
         <ul className="card__body">
             <li><span>Age:</span><p>{data.age}</p></li>
             <li><span>Street:</span>{data.street}<p></p></li>
             <li><span>City:</span><p>{data.city}</p></li>
             <li><span>Postal Code:</span><p>{data.postal_code}</p></li>
         </ul>
+
         <div className="card__buttons">
             <button className="user__button" onClick={pushToEdit}>
             <span className="fas fa-user-edit"></span>
@@ -103,8 +107,8 @@ const UserCard = ({data}) => {
             <button className="user__button" onClick={deleteUser}>
             <span className="fas fa-user-times"></span>
             </button>
-        
         </div>
+        
     </UserCardWrapper>
     )
 }

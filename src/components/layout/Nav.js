@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import history from '../../history'
+import Button from '../reusable/Button'
 
 
 const NavWrapper = styled.nav`
@@ -23,20 +24,6 @@ background-color: var(--white);
             opacity:.7;
         }
     }
-    &__create-button {
-        padding: 5px 20px;
-        border:2px solid var(--dark);
-        border-radius:4px;
-        background-color: var(--dark);
-        color:var(--white);
-        cursor:pointer;
-        transition: background-color .3s, border .3s, color .3s;
-        &:hover,&:focus {
-            border: 2px solid var(--dark);
-            background-color:var(--white);
-            color: var(--dark);
-        }
-    }
 }
 `
 
@@ -53,7 +40,7 @@ class Nav extends Component {
                         User Manager
                     </Link>
                 </h1>
-                <button className="nav__create-button" onClick={this.pushToCreate}>Create</button>
+                <Button handleOnClick={this.pushToCreate}>Create</Button>
             </div>
         </NavWrapper>
         

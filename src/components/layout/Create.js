@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
-import Form from '../reusable/Form'
 import history from '../../history'
+
+import Form from '../reusable/Form'
 
 class Create extends Component {
     state = {
@@ -22,7 +23,7 @@ class Create extends Component {
 
     handleOnSubmit = (e) => {
     e.preventDefault();
-
+        // NO EMPTY SPACES
         if (
             (this.state.first_name === '') ||
             (this.state.last_name ==='') ||
@@ -35,6 +36,7 @@ class Create extends Component {
                 return;
             }
 
+        // NO WHITESPACE CHARACTERS
             const regexpNoWhitespace = /^\S*$/;
         if (
             (!this.state.first_name.match(regexpNoWhitespace)) ||
@@ -43,10 +45,11 @@ class Create extends Component {
             (!this.state.street.match(regexpNoWhitespace)) ||
             (!this.state.city.match(regexpNoWhitespace))
             ) {
-                this.setState({error: 'field cannot contain white spaces'});
+                this.setState({error: 'field cannot contain whitespace characters'});
                 return;
             }
 
+        // ONLY LETTERS
             const regexpLettersOnly = /^[a-zA-Z]+$/;
         if (
             (!this.state.first_name.match(regexpLettersOnly)) ||
@@ -58,6 +61,7 @@ class Create extends Component {
                 return;
             }
 
+        // REQUEST
     const details = {
         first_name:this.state.first_name,
         last_name:this.state.last_name,
@@ -66,12 +70,15 @@ class Create extends Component {
         city:this.state.city,
         age:this.state.age,
     };
+
     let formBody = [];
+
     for (let property in details) {
       let encodedKey = encodeURIComponent(property);
       let encodedValue = encodeURIComponent(details[property]);
       formBody.push(encodedKey + "=" + encodedValue);
     }
+
     formBody = formBody.join("&");
     
     fetch('http://fronttest.ekookna.pl/user', {
@@ -96,9 +103,16 @@ class Create extends Component {
 
 
 
-    render() {return (
-        <Form title="Create New User" data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
-    )}
+    render() {
+    return (
+        <Form
+        title="Create New User"
+        data={this.state}
+        handleOnChange={this.handleOnChange}
+        handleOnSubmit={this.handleOnSubmit}>
+        </Form>
+    )
+}
 }
 
 export default Create

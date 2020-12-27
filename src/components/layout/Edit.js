@@ -1,28 +1,12 @@
 import React,{Component} from 'react'
-import Form from '../reusable/Form';
-import history from '../../history';
-import Subtitle from '../reusable/Subtitle'
 import styled from 'styled-components';
+import history from '../../history';
+
+import Form from '../reusable/Form';
+import Subtitle from '../reusable/Subtitle'
+import Button from '../reusable/Button'
 
 
-const RecordNotFoundWrapper = styled.div`
-button {
-    display:block;
-        margin:15px auto 0;
-        padding: 5px 20px;
-        border:2px solid var(--dark);
-        border-radius:4px;
-        color:var(--white);
-        background-color: var(--dark);
-        cursor:pointer;
-        transition: background-color .3s, border .3s, color .3s;
-        &:hover,&:focus {
-            background-color:var(--white);
-            border: 2px solid var(--dark);
-            color: var(--dark);
-        }
-}
-`
 
 class Edit extends Component {
     componentDidMount() {
@@ -46,6 +30,8 @@ class Edit extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault();
+
+        // NO EMPTY STRINGS
         if (
             (this.state.first_name === '') ||
             (this.state.last_name ==='') ||
@@ -57,6 +43,8 @@ class Edit extends Component {
                 this.setState({error: 'field cannot be empty'});
                 return;
             }
+
+            // NO WHITESPACE CHARACTERS
             const regexpNoWhitespace = /^\S*$/;
         if (
             (!this.state.first_name.match(regexpNoWhitespace)) ||
@@ -69,6 +57,7 @@ class Edit extends Component {
                 return;
             }
 
+            // ONLY LETTERS
             const regexpLettersOnly = /^[a-zA-Z]+$/;
         if (
             (!this.state.first_name.match(regexpLettersOnly)) ||
@@ -79,6 +68,8 @@ class Edit extends Component {
                 this.setState({error: 'name, street and city fields can only contain letters'});
                 return;
             }
+
+            // REQUEST
     const details = {
         first_name:this.state.first_name,
         last_name:this.state.last_name,
@@ -120,14 +111,19 @@ class Edit extends Component {
     render() {
         if(this.state.success === 'yes') {
             return (
-                <Form title='Edit User' data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
+                <Form
+                title='Edit User'
+                data={this.state}
+                handleOnChange={this.handleOnChange}
+                handleOnSubmit={this.handleOnSubmit}>
+                </Form>
                 )            
         } else {
             return (
-                <RecordNotFoundWrapper>
+                <section>
                 <Subtitle>Record not found</Subtitle>
-                <button onClick={()=>{history.push('/')}}>Home</button>
-                </RecordNotFoundWrapper>
+                <Button center="true" handleOnClick={()=>{history.push('/')}}>Home</Button>
+                </section>
             )
         }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
+import Button from '../reusable/Button'
+
 
 
 const FilterWrapper = styled.form`
@@ -51,6 +53,7 @@ padding: 0;
     }
 
     &__label {
+        display:block;
         text-align:center;
         font-size:1.3rem;
         margin-bottom:6px;
@@ -63,23 +66,6 @@ padding: 0;
         color: red;
     }
 
-
-    &__button {
-        display:block;
-        margin:15px auto 0;
-        padding: 5px 20px;
-        border:2px solid var(--dark);
-        border-radius:4px;
-        color:var(--white);
-        background-color: var(--dark);
-        cursor:pointer;
-        transition: background-color .3s, border .3s, color .3s;
-        &:hover,&:focus {
-            background-color:var(--white);
-            border: 2px solid var(--dark);
-            color: var(--dark);
-        }
-    }
 }
 
 `
@@ -107,7 +93,7 @@ export class Filter extends Component {
 
                 </div>
                 <p className="search__error">{this.props.error}</p>
-                <button className="search__button">Search</button>
+                <Button center="true">Search</Button>
             </FilterWrapper>
 
         )
