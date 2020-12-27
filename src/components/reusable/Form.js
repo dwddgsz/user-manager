@@ -64,7 +64,7 @@ class Form extends React.Component {
         const handleOnSubmit = this.props.handleOnSubmit;
         return(
             <FormWrapper>
-                <Subtitle>Create New User</Subtitle>
+                <Subtitle>{this.props.title}</Subtitle>
             <form onSubmit={handleOnSubmit}>
             <div className="form__field-container">
                 <label className="form__label">Name</label>
