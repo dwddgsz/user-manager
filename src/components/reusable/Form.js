@@ -43,6 +43,12 @@ form {
             color: var(--dark);
         }
     }
+    &__error {
+        padding: 7px 0 12px;
+        font-size:1.2rem;
+        text-align:center;
+        color: red;
+    }
     }
     
 }
@@ -96,6 +102,7 @@ class Form extends React.Component {
                 onChange={handleOnChange} value={this.props.data.postal_code}
                 ></input>
             </div>
+            <p className="form__error">{this.props.data.error}</p>
             <button className="form__button">Submit</button>
             </form>
             </FormWrapper>
