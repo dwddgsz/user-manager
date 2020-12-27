@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ButtonWrapper = styled.button`
         display:block;
-        ${props=>props.center === true? 'margin:0 auto' : null};
+        ${props=>props.center? 'margin:0 auto' : null};
         padding: 5px 0;
         width:85px;
         border:2px solid var(--dark);
