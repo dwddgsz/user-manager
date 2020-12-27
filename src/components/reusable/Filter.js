@@ -8,6 +8,7 @@ margin:0 auto;
 max-width:1200px;
 padding: 0;
 .search {
+
     &__by-name {
         display:block;
         width:250px;
@@ -42,6 +43,26 @@ padding: 0;
     }
     }
 
+    &__field-group {
+        display:flex;
+        flex-direction:column;
+        width:250px;
+        margin:0 auto;
+    }
+
+    &__label {
+        text-align:center;
+        font-size:1.3rem;
+        margin-bottom:6px;
+    }
+
+    &__error {
+        padding: 16px 0 0px;
+        font-size:1.2rem;
+        text-align:center;
+        color: red;
+    }
+
 
     &__button {
         display:block;
@@ -67,11 +88,25 @@ export class Filter extends Component {
     render() {
         return (
             <FilterWrapper onSubmit={(e)=>{e.preventDefault();this.props.handleOnSubmit()}}>
-                <input id="searchPhrase" onChange={this.props.handleOnChange} value={this.props.searchPhrase} type="text" className="search__by-name" placeholder="search by last name" ></input>
-                <div className="search__by-age-container">
-                <input id="minAge" onChange={this.props.handleOnChange} min="0" value={this.props.minAge} type="number" className="search__by-age" placeholder="min age"></input>
-                <input id="maxAge" onChange={this.props.handleOnChange} max="200" value={this.props.maxAge} type="number" className="search__by-age" placeholder="max age" ></input>
+                <div className="search__field-group">
+                <label className="search__label" htmlFor="searchPhrase">search phrase</label>
+                <input id="searchPhrase" onChange={this.props.handleOnChange} value={this.props.searchPhrase} type="text" className="search__by-name" ></input>
                 </div>
+
+                <div className="search__by-age-container">
+
+                <div className="search__field-group">
+                <label className="search__label" htmlFor="minAge">min age</label>
+                <input id="minAge" onChange={this.props.handleOnChange} min="0" max="200" value={this.props.minAge} type="number" className="search__by-age"></input>
+                </div>
+
+                <div className="search__field-group">
+                <label className="search__label" htmlFor="maxAge">max Age</label>
+                <input id="maxAge" onChange={this.props.handleOnChange} min="0" max="200" value={this.props.maxAge} type="number" className="search__by-age" ></input>
+                </div>
+
+                </div>
+                <p className="search__error">{this.props.error}</p>
                 <button className="search__button">Search</button>
             </FilterWrapper>
 
