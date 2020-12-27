@@ -11,7 +11,7 @@ const App = () => {
     return (
     <>
       <Router history={history}>
-        <Nav></Nav>
+      <Nav></Nav>
       <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/create" exact component={Create} />
