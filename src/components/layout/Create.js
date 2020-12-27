@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import Form from '../reusable/Form'
+import history from '../../history'
 
 class Create extends Component {
     state = {
@@ -33,18 +34,29 @@ class Create extends Component {
                 this.setState({error: 'field cannot be empty'});
                 return;
             }
-            const regexp = /^\S*$/;
-            if (
-                (this.state.first_name.match(regexp)) ||
-                (this.state.last_name.match(regexp)) ||
-                (this.state.age.match(regexp)) ||
-                (this.state.street.match(regexp)) ||
-                (this.state.city.match(regexp)) ||
-                (this.state.age.match(regexp))
-                ) {
-                    this.setState({error: 'field cannot contain white spaces'});
-                    return;
-                }
+
+            const regexpNoWhitespace = /^\S*$/;
+        if (
+            (!this.state.first_name.match(regexpNoWhitespace)) ||
+            (!this.state.last_name.match(regexpNoWhitespace)) ||
+            (!this.state.postal_code.match(regexpNoWhitespace)) ||
+            (!this.state.street.match(regexpNoWhitespace)) ||
+            (!this.state.city.match(regexpNoWhitespace))
+            ) {
+                this.setState({error: 'field cannot contain white spaces'});
+                return;
+            }
+
+            const regexpLettersOnly = /^[a-zA-Z]+$/;
+        if (
+            (!this.state.first_name.match(regexpLettersOnly)) ||
+            (!this.state.last_name.match(regexpLettersOnly)) ||
+            (!this.state.street.match(regexpLettersOnly)) ||
+            (!this.state.city.match(regexpLettersOnly))
+            ) {
+                this.setState({error: 'name, street and city fields can only contain letters'});
+                return;
+            }
 
     const details = {
         first_name:this.state.first_name,
@@ -79,12 +91,13 @@ class Create extends Component {
         city:'',
         age:'',
     })})
+    .then(()=>{history.push('/')})
     }
 
 
 
     render() {return (
-        <Form data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
+        <Form title="Create New User" data={this.state} handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit}></Form>
     )}
 }
 

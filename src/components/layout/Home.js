@@ -9,8 +9,9 @@ class Home extends Component {
         allData: [],
         filteredData: [],
         searchPhrase:'',
-        minAge:1,
+        minAge:0,
         maxAge:200,
+        error:'',
     }
     componentDidMount() {
         fetch('http://fronttest.ekookna.pl/')
@@ -21,12 +22,19 @@ class Home extends Component {
     }
 
     handleOnSubmit = () => {
-        if (parseInt(this.state.minAge) > parseInt(this.state.maxAge)) {
-            console.log(this.state.minAge);
-            console.log(this.state.maxAge);
-            console.log('is higher');
+        if ((this.state.minAge === '') || (this.state.maxAge === '')){
+            this.setState({error:'age field cannot be empty'});
             return;
-        } else {
+        }
+        if (parseInt(this.state.minAge) > parseInt(this.state.maxAge)) {
+            this.setState({error:'min age cannot be higher than max age'});
+            return;
+        }
+        if (!this.state.searchPhrase.match(/^[a-zA-Z]*$/)){
+            this.setState({error:'search phrase can only contain letters or empty string'});
+            return;
+        }
+        else {
             this.setState({filteredData:this.state.allData.filter((element)=>{
                 if((parseInt(element.age) >= parseInt(this.state.minAge)) &&  (parseInt(element.age) <= parseInt(this.state.maxAge))){
                     return element;
@@ -49,7 +57,8 @@ class Home extends Component {
     }
     handleOnChange = e => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            error:'',
         })
     }
 
@@ -63,6 +72,7 @@ class Home extends Component {
         searchPhrase={this.state.searchPhrase}
         minAge={this.state.minAge}
         maxAge={this.state.maxAge}
+        error={this.state.error}
         ></Filter>
         <UsersList filteredData={this.state.filteredData} ></UsersList>
         </div>
