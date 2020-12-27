@@ -12,11 +12,25 @@ const UserCardWrapper = styled.li`
     background-color:var(--white);
     .card {
     &__header {
-        padding: 20px 10px;
+        padding: 12px 10px;
         border-bottom: 1px solid rgba(200,200,200,.5);
-        font-size:1.4rem;
-        font-weight:500;
-        text-align:center;
+        h3 {
+            display:flex;
+            flex-direction:column;
+            font-size:1.4rem;
+            white-space: nowrap;
+            max-width:180px;
+            margin: 0 auto;
+            span {
+                overflow: hidden;
+            text-overflow:ellipsis;
+            text-align:center;
+
+                &:not(:last-child){
+                    margin-bottom:5px;
+                }
+            }
+        }
     }
     &__body {
         display:flex;
@@ -27,15 +41,15 @@ const UserCardWrapper = styled.li`
             display:flex;
             font-size:1.3rem;
             margin-bottom:5px;
+            white-space: nowrap;
             span {
                 color: #5c5c5c;
-                white-space: nowrap;
             }
             p {
                 margin-left:4px;
                 font-weight:500;
                 white-space: nowrap;
-                max-width:100%;
+                max-width:100px;
   	            overflow: hidden;
                 text-overflow:ellipsis;
             }
@@ -90,12 +104,18 @@ const UserCard = ({data}) => {
         <UserCardWrapper data-id={data.id}>
 
         <div className="card__header">
-            <h3>{`${data.first_name} ${data.last_name}`}</h3>
+            <h3>
+                <span>
+                {data.first_name}
+                </span>
+                <span>
+                {data.last_name}
+                </span></h3>
         </div>
 
         <ul className="card__body">
             <li><span>Age:</span><p>{data.age}</p></li>
-            <li><span>Street:</span>{data.street}<p></p></li>
+            <li><span>Street:</span><p>{data.street}</p></li>
             <li><span>City:</span><p>{data.city}</p></li>
             <li><span>Postal Code:</span><p>{data.postal_code}</p></li>
         </ul>
