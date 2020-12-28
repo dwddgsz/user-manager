@@ -58,7 +58,7 @@ const FilterWrapper = styled.form`
 		}
 
 		&__error {
-			padding: 16px 0 0px;
+			padding: 16px 0 10px;
 			font-size: 1.2rem;
 			text-align: center;
 			color: red;
