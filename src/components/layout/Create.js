@@ -92,12 +92,6 @@ class Create extends Component {
 			},
 			body: formBody,
 		})
-			.then((res) => {
-				return res.json()
-			})
-			.then((res) => {
-				console.log(res)
-			})
 			.then(() => {
 				this.setState({
 					first_name: '',

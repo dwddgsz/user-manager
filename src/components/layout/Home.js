@@ -24,9 +24,6 @@ class Home extends Component {
 			.then(() => {
 				this.setState({ filteredData: this.state.allData })
 			})
-			.catch(() => {
-				console.log('error')
-			})
 	}
 
 	handleOnSubmit = (e) => {
