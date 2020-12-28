@@ -1,6 +1,6 @@
 # User Manager
 
-[live](https://fervent-morse-4074f5.netlify.app/)
+[live](https://pensive-yonath-bc1a0a.netlify.app/)
 
 ## Views:
 
@@ -49,10 +49,10 @@
 - User Card contains info about user
 
 
-- after clicking at left button at User Card user will be pushed to '/edit/:id' (Edit User Form)
+- after clicking at left button on User Card user will be pushed to '/edit/:id' (Edit User Form)
 
 
-- after clicking at right button at User Card choosen User will get deleted
+- after clicking at right button on User Card choosen User will get deleted
 
 
 #### Filter:
@@ -67,7 +67,7 @@ b) After successful operation user data will get filtred, if operation will fail
 c) validation:
 
 
-- last name can only contain letters, cannot contain whitespace characters and cannot be empty
+- last name can only contain letters, cannot contain whitespace characters
 
 
 - min age cannot be higher then max age
@@ -82,8 +82,7 @@ c) validation:
 a) user can come back to Home page by clicking 'Home' button
 
 
-b) user can submit form by clicking 'Submit' button, after successful operation user will see success message,
-if operation will fail user will see error message
+b) user can submit form by clicking 'Submit' button, after successful operation component will display success message, if operation will fail component will display error message
 
 
 c) validation:
